@@ -34,7 +34,7 @@ This project demonstrates a real-world API test automation design suitable for e
 ---
 
 ## 🏗 Project Structure
-<img width="404" height="308" alt="image" src="https://github.com/user-attachments/assets/f0c23e16-d525-491e-83bc-df2a5fd20806" />
+<img width="554" height="315" alt="image" src="https://github.com/user-attachments/assets/82cac41b-4a6c-49bc-91df-9cd1754d9222" />
 
 ---
 
