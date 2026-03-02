@@ -34,21 +34,7 @@ This project demonstrates a real-world API test automation design suitable for e
 ---
 
 ## 🏗 Project Structure
-playwright-api-automation-framework
-│
-├── src
-│ ├── config # Environment & endpoint configuration
-│ ├── core # ApiClient (HTTP layer)
-│ ├── models # Request & Response schemas
-│ ├── scenarios # Business workflows
-│ ├── services # API service layer
-│ ├── utils # Logger, Data generator, helpers
-│ └── validations # Schema & response validations
-│
-├── tests # Playwright test files
-├── playwright.config.ts
-├── package.json
-└── tsconfig.json
+<img width="404" height="308" alt="image" src="https://github.com/user-attachments/assets/f0c23e16-d525-491e-83bc-df2a5fd20806" />
 
 ---
 
