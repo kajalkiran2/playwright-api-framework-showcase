@@ -1,116 +1,42 @@
-import { CreateUserRequestModel, CreateUserResponseModel, UpdateUserRequestModel, UserModel, UserPathParamsModel } from "../models/userModel";
-import { UserService } from "../services/userService";
-import { UserValidationHelper } from "../utils/helpers";
-import { SchemaValidator } from "../validations/schemaValidator";
+import { expect } from '@playwright/test';
+import { UserService } from '../services/userService';
 
 export class UserCrudScenario {
-  private validator: UserValidationHelper;
-  private schemaValidator: SchemaValidator;
+  constructor(private userService: UserService) {}
 
-  constructor(private userService: UserService) {
-    this.validator = new UserValidationHelper();
-    this.schemaValidator = new SchemaValidator();
+  async createUserFlow(userData: unknown): Promise<number> {
+    const response = await this.userService.createUser(userData);
+    expect(response.status()).toBe(201);
+
+    const body = await response.json();
+    return body.id;
   }
 
-  // ---------------- CREATE ----------------
-  async createUserFlow(userData: any) {
-    this.schemaValidator.validateObject(
-      userData,
-      CreateUserRequestModel.requiredFields
-    );
-
-    const { response, duration } =
-      await this.userService.createUser(userData);
-
-    await this.validator.validateResponse(response, duration, {
-      expectedStatus: 201,
-      schema: CreateUserResponseModel.requiredFields
-    });
-
-    const createdUser = await response.json();
-    return createdUser.id;
+  async getUserFlow(userId: number): Promise<void> {
+    const response = await this.userService.getUserById(userId);
+    expect(response.status()).toBe(200);
   }
 
-  // ---------------- GET ----------------
-  async getUserFlow(userId: number) {
-
-    this.schemaValidator.validateParams(
-      { userId },
-      UserPathParamsModel
-    );
-
-    const { response, duration } =
-      await this.userService.getUserById(userId);
-
-    await this.validator.validateResponse(response, duration, {
-      expectedStatus: 200,
-      schema: UserModel.requiredFields
-    });
+  async updateUserFlow(userId: number, userData: unknown): Promise<void> {
+    const response = await this.userService.updateUser(userId, userData);
+    expect(response.status()).toBe(200);
   }
 
-  // ---------------- UPDATE ----------------
-  async updateUserFlow(userId: number, userData: any) {
-
-    const updatedData = {
-      ...userData,
-      name: `${userData.name}_Updated`
-    };
-
-    this.schemaValidator.validateParams(
-      { userId },
-      UserPathParamsModel
-    );
-
-    this.schemaValidator.validateObject(
-      updatedData,
-      UpdateUserRequestModel.requiredFields
-    );
-
-    const { response, duration } =
-      await this.userService.updateUser(userId, updatedData);
-
-    await this.validator.validateResponse(response, duration, {
-      expectedStatus: 200
-    });
+  async deleteUserFlow(userId: number): Promise<void> {
+    const response = await this.userService.deleteUser(userId);
+    expect(response.status()).toBe(200);
   }
 
-  // ---------------- DELETE ----------------
-  async deleteUserFlow(userId: number) {
-
-    this.schemaValidator.validateParams(
-      { userId },
-      UserPathParamsModel
-    );
-
-    const { response, duration } =
-      await this.userService.deleteUser(userId);
-
-    await this.validator.validateResponse(response, duration, {
-      expectedStatus: 200
-    });
-  }
-
-  // ---------------- FULL WORKFLOW ----------------
-  async userLifecycleWorkflow(userData: any) {
-
+  async userLifecycleWorkflow(userData: unknown) {
     const userId = await this.createUserFlow(userData);
 
-    // Since demo API doesn't persist, you may still use 1 if needed
+    // Demo API limitation
     const effectiveUserId = 1;
 
     await this.getUserFlow(effectiveUserId);
     await this.updateUserFlow(effectiveUserId, userData);
     await this.deleteUserFlow(effectiveUserId);
 
-    return { createdUserId: userId };
-  }
-
-  async getUserWithInvalidId() { 
-    const invalidId = 999999; 
-    const { response, duration } = 
-    await this.userService.getUserById(invalidId); 
-    await this.validator.validateResponse(response, duration, { 
-      expectedStatus: 404 
-    }); 
+    return userId;
   }
 }

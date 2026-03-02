@@ -1,32 +1,77 @@
-# 🚀 Playwright API Automation Framework
+# 🚀 Playwright API Automation Framework (Showcase)
 
 ## 📌 Overview
-A modular and scalable API automation framework built using **Playwright + JavaScript + TypeScript**.  
-The framework follows a layered architecture with service abstraction, schema validation, retry mechanism, logging, and CI integration.
+A clean and scalable API automation framework built with Playwright and TypeScript.
 
-This project demonstrates a real-world API test automation design suitable for enterprise-level testing.
+This showcase project demonstrates a layered SDET-style architecture with:
+
+    - Centralized HTTP abstraction
+    - Config-driven retry strategy
+    - Service & scenario-based test design
+    - Clean separation of infrastructure and business logic
+    - CI-ready structure
+
+This project emphasizes clean architectural design, maintainability, and scalable API test automation practices.
 
 ---
+
+## 🏗 Architecture Overview
+The framework follows a clean layered architecture:
+
+Core → Services → Scenarios → Tests
+
+🔹 Core Layer
+    Handles HTTP communication and retry strategy.
+    Infrastructure concerns are centralized here.
+
+🔹 Service Layer
+    Encapsulates API endpoints and abstracts raw HTTP calls.
+
+🔹 Scenario Layer
+    Represents business workflows and test flows.
+
+🔹 Test Layer
+    Validates business behavior using clean, scenario-based execution.
+
+This separation ensures:
+
+    - Maintainability
+    - Scalability
+    - Reusability
+    - Clear responsibility boundaries   
+
+---     
 
 ## ✨ Key Features
 
 - ✅ Layered Architecture (Core → Services → Scenarios → Tests)
+- ✅ Centralized API Client
 - ✅ Retry mechanism for 5XX server errors
-- ✅ Schema validation for request & response
-- ✅ Centralized API client
-- ✅ Logging utility
-- ✅ Environment configuration support
-- ✅ Clean Git workflow
-- ✅ CI/CD integration using GitHub Actions
-- ✅ HTML reports (Playwright default reporter)
+- ✅ Configurable retry count & delay
+- ✅ Environment-driven configuration
+- ✅ Clean dependency injection
+- ✅ CI-ready structure (GitHub Actions)
+- ✅ HTML reports (Playwright default)
+
+---
+
+## 🔁 Retry Strategy
+
+Retry logic is implemented within the `ApiClient`, centralizing resiliency handling at the infrastructure layer.
+
+- Retries only for 5XX server errors
+- Configurable retry count
+- Configurable retry delay
+- Prevents test flakiness caused by transient server failures
+
+This ensures consistent and reusable resiliency behavior across all services.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Playwright**
-- **JavaScript**
-- **TypeScript**
+- **Playwright (API testing)**
+- **TypeScript (Type safety & scalable structure)**
 - **Node.js**
 - **GitHub Actions (CI/CD)**
 - **Git (SSH based setup)**
@@ -34,7 +79,22 @@ This project demonstrates a real-world API test automation design suitable for e
 ---
 
 ## 🏗 Project Structure
-<img width="554" height="315" alt="image" src="https://github.com/user-attachments/assets/82cac41b-4a6c-49bc-91df-9cd1754d9222" />
+
+```
+playwright-api-framework-showcase/
+│
+├── src/
+│   ├── config/        # Environment & endpoint configuration
+│   ├── core/          # ApiClient with retry strategy
+│   ├── services/      # API service abstraction
+│   ├── scenarios/     # Business workflow layer
+│   └── utils/         # Test data generator
+│
+├── tests/
+├── playwright.config.ts
+├── package.json
+└── tsconfig.json
+```
 
 ---
 
@@ -42,12 +102,11 @@ This project demonstrates a real-world API test automation design suitable for e
 
 Before running this project, ensure you have:
 
-- Node.js (v16 or higher recommended)
-- npm (comes with Node.js)
-- Git (SSH configured)
-- Internet connection (for demo API execution)
+- Node.js (v16+ recommended)
+- npm
+- Git
 
-Verify installations:
+Verify:
     - node -v
     - npm -v
     - git --version
@@ -56,54 +115,47 @@ Verify installations:
 
 ## 📦 Installation
 
-- Clone the repository: <git clone git@github.com 
-
-- Navigate into project folder: <cd playwright-api-automation-framework
-
-- Install dependencies: <npm install
-
-- Install Playwright browsers: <npx playwright install
+- git clone <your-repo-url>
+- cd playwright-api-framework-showcase
+- npm install
+- npx playwright install
 
 ---
 
-## ▶️ How to Run Tests
+## ▶️ Run Tests
 
-- Run all tests: <npx playwright test
+- Run all tests: `npx playwright test`
 
-- Run specific test file: <npx playwright test tests/[fileName]>
+- Run specific test file: `npx playwright test tests/[fileName]`
 
-- View HTML report: <npx playwright show-report
-
-## 🔁 Retry Strategy
-
-The framework implements a retry mechanism inside the `ApiClient`:
-
-- Retries only for 5XX server errors
-- Configurable retry count
-- Configurable retry delay
-- Logs retry attempts to detect endpoint flakiness
-
----
-
-## 📊 Reporting
-
-Playwright default HTML reporter is used.
-
-- Reports are generated in: <playwright-report/
+- View HTML report: `npx playwright show-report`
 
 ---
 
 ## 🚀 CI/CD
 
-GitHub Actions workflow executes API regression suite on every push to `main` branch.
+The framework is designed to integrate with GitHub Actions.
 
-Pipeline Steps:
+Typical CI flow:
 
-1. Checkout code
-2. Setup Node
-3. Install dependencies
-4. Install Playwright
-5. Execute tests
+    1. Checkout code
+    2. Setup Node
+    3. Install dependencies
+    4. Install Playwright browsers
+    5. Execute test suite
+
+---
+
+## 🎯 Design Rationale
+
+This framework prioritizes:
+
+- Clear separation of concerns
+- Infrastructure abstraction
+- Business workflow encapsulation
+- Scalability for growing API suites
+
+The showcase version intentionally keeps implementation minimal while preserving architectural integrity.
 
 ---
 

@@ -1,33 +1,11 @@
-import dotenv from 'dotenv';
+export function getConfig() {
+  const baseUrl = process.env.BASE_URL;
 
-export type AuthType = 'none' | 'apiKey' | 'jwt';
-
-export const getConfig = () => {
-  const BASE_URL = process.env.BASE_URL;
-  const AUTH_TYPE = process.env.AUTH_TYPE as AuthType;
-  const API_KEY = process.env.API_KEY;
-  const JWT_TOKEN = process.env.JWT_TOKEN;
-
-  if (!BASE_URL) {
-    throw new Error("BASE_URL is missing in .env");
-  }
-
-  if (!AUTH_TYPE) {
-    throw new Error("AUTH_TYPE is missing in .env");
-  }
-
-  if (AUTH_TYPE === 'apiKey' && !API_KEY) {
-    throw new Error("API_KEY required when AUTH_TYPE=apiKey");
-  }
-
-  if (AUTH_TYPE === 'jwt' && !JWT_TOKEN) {
-    throw new Error("JWT_TOKEN required when AUTH_TYPE=jwt");
+  if (!baseUrl) {
+    throw new Error('BASE_URL is not defined in environment variables');
   }
 
   return {
-    BASE_URL,
-    AUTH_TYPE,
-    API_KEY,
-    JWT_TOKEN
+    BASE_URL: baseUrl as string
   };
-};
+}
