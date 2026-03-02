@@ -44,14 +44,14 @@ This separation ensures:
 
 ## ✨ Key Features
 
-- ✅ Layered Architecture (Core → Services → Scenarios → Tests)
-- ✅ Centralized API Client
-- ✅ Retry mechanism for 5XX server errors
-- ✅ Configurable retry count & delay
-- ✅ Environment-driven configuration
-- ✅ Clean dependency injection
-- ✅ CI-ready structure (GitHub Actions)
-- ✅ HTML reports (Playwright default)
+- Layered Architecture (Core → Services → Scenarios → Tests)
+- Centralized API Client
+- Retry mechanism for 5XX server errors
+- Configurable retry count & delay
+- Environment-driven configuration
+- Clean dependency injection
+- CI-ready structure (GitHub Actions)
+- HTML reports (Playwright default)
 
 ---
 
