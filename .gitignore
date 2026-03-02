@@ -1,0 +1,9 @@
+# Node dependencies
+node_modules/
+
+# Playwright reports
+playwright-report/
+test-results/
+
+# Environment files
+.env
