@@ -1,5 +1,7 @@
 # 🚀 Playwright API Automation Framework (Showcase)
 
+![CI](https://github.com/kajalkiran2/playwright-api-framework-showcase/actions/workflows/playwright.yml/badge.svg)
+
 ## 📌 Overview
 A clean and scalable API automation framework built with Playwright and TypeScript.
 
@@ -52,6 +54,24 @@ This separation ensures:
 - Clean dependency injection
 - CI-ready structure (GitHub Actions)
 - HTML reports (Playwright default)
+
+---
+
+## 🚀 CI/CD
+
+This project uses **GitHub Actions** to automatically execute the Playwright test suite.
+
+The pipeline performs:
+
+- Install dependencies
+- Install Playwright browsers
+- Execute API tests
+- Upload HTML reports
+
+Tests run automatically on:
+- Push to main branch
+- Pull requests
+- Scheduled nightly execution
 
 ---
 
