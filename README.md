@@ -59,17 +59,16 @@ This separation ensures:
 
 ## 🚀 CI/CD
 
-This project uses **GitHub Actions** to automatically execute the Playwright test suite.
+This project uses **GitHub Actions** to automatically execute the Playwright API test suite.
 
 The pipeline performs:
 
 - Install dependencies
-- Install Playwright browsers
 - Execute API tests
-- Upload HTML reports
+- Upload Playwright HTML reports as artifacts
 
 Tests run automatically on:
-- Push to main branch
+- Push to the main branch
 - Pull requests
 - Scheduled nightly execution
 
@@ -149,20 +148,6 @@ Verify:
 - Run specific test file: `npx playwright test tests/[fileName]`
 
 - View HTML report: `npx playwright show-report`
-
----
-
-## 🚀 CI/CD
-
-The framework is designed to integrate with GitHub Actions.
-
-Typical CI flow:
-
-    1. Checkout code
-    2. Setup Node
-    3. Install dependencies
-    4. Install Playwright browsers
-    5. Execute test suite
 
 ---
 
