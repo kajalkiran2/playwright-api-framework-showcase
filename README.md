@@ -87,6 +87,20 @@ This ensures consistent and reusable resiliency behavior across all services.
 
 ---
 
+## 📐 Contract Validation (Design Consideration)
+
+In a full-scale implementation, this framework can be extended to support contract validation, including:
+
+- Request payload validation
+- Response schema validation
+- Path and query parameter validation
+
+This ensures API contract compliance and helps detect data inconsistencies early.
+
+The showcase version intentionally keeps this implementation minimal while focusing on architectural clarity.
+
+---
+
 ## 🛠 Tech Stack
 
 - **Playwright (API testing)**
@@ -137,7 +151,15 @@ Verify:
 - git clone <your-repo-url>
 - cd playwright-api-framework-showcase
 - npm install
-- npx playwright install
+- npx playwright install (only required if using UI testing)
+
+---
+
+## ⚙️ Environment Configuration
+
+This framework uses environment variables for configuration.
+
+Create a `.env` file in the root directory:
 
 ---
 
